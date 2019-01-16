@@ -50,15 +50,15 @@ Choose whatever front-end technology you're most familiar with. But here's some 
 * Vue
 * Angular
 
-##Technologies and libraries used in this app
-*Reactjs: single page webapp
-  *setup: npx create-react-app appName
-*LuxonJs: Date and time manipulation
-  *Setup: npm --save install luxon
-*axios: Performing API requests using get methode
-  *Setup: npm --save install axios
-*semantic-ui-react: framework for responsive CSS components for react
-  *Setup: npm install --save semantic-ui-react semantic-ui-css
+## Technologies and libraries used in this app
+* Reactjs: single page webapp
+  * setup: npx create-react-app appName
+* LuxonJs: Date and time manipulation
+  * Setup: npm --save install luxon
+* axios: Performing API requests using get methode
+  * Setup: npm --save install axios
+* semantic-ui-react: framework for responsive CSS components for react
+  * Setup: npm install --save semantic-ui-react semantic-ui-css
 
 
-*Note: the code of the app in contained within two main files: App.js and cards.js
+* Note: the code of the app in contained within two main files: App.js and cards.js
