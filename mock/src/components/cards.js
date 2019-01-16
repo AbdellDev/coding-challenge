@@ -6,7 +6,7 @@ import {DateTime} from 'luxon'
 const Items =({repos,currentdate})=>{
   const itemslist=repos.map(repo=>{
     return(
-    <Card>
+    <Card fluid>
      <Card.Content>
        <Image floated='left' size='mini' src={repo.owner.avatar_url} />
        <Card.Header>{repo.name}</Card.Header>
@@ -24,9 +24,11 @@ const Items =({repos,currentdate})=>{
         Issues
           <Label.Detail>{repo.open_issues}</Label.Detail>
        </Label>
-       <Card.Meta>Submitted {
-           currentdate.diff(DateTime.fromISO(repo.created_at),'days').toFormat("d")
-         } days ago by {repo.owner.login}</Card.Meta>
+       <Label>
+         <Card.Meta>Submitted {
+             currentdate.diff(DateTime.fromISO(repo.created_at),'days').toFormat("d")
+           } days ago by {repo.owner.login}</Card.Meta>
+       </Label>
        </div>
      </Card.Content>
    </Card>
