@@ -7,10 +7,12 @@ class App extends Component {
   state={
     currentdate:DateTime.local(),
     currentpage:1,
-    repos:[]
+    repos:[],
+    scrolling:false
   }
   componentDidMount(){
-    this.addRepos();
+    this.addRepos()
+    this.scroller=window.addEventListener("scroll",this.handleScroll)
   }
   addRepos=()=>{
     const {currentdate,currentpage,repos}=this.state;
@@ -18,21 +20,29 @@ class App extends Component {
     axios.get(`https://api.github.com/search/repositories?q=created:>${dateAsString}&sort=stars&order=desc&page=${currentpage}`)
          .then(resp=>{
            this.setState({
-             repos:[...repos,...resp.data.items]
+             repos:[...repos,...resp.data.items],
+             scrolling:false
            })
          });
   }
   loadMore=()=>{
     this.setState((prevState)=>({
-      currentpage: prevState.currentpage++
-    }),this.addRepos())
+      currentpage: prevState.currentpage+1,
+      scrolling:true
+    }))
+    this.addRepos();
+  }
+  handleScroll=()=>{
+    const {currentpage,scrolling}=this.state;
+    if(window.pageYOffset+window.innerHeight>=window.innerHeight+400 && !scrolling && currentpage<=34){
+      this.loadMore();
+    }
   }
   render() {
     return (
       <div>
         <h1>GitHub Repositories</h1>
           <Items repos={this.state.repos} currentdate={this.state.currentdate}/>
-          <a onClick={this.loadMore}>LoadMore</a>
       </div>
     );
   }
